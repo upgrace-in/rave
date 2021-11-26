@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<div class="edit_profile register login">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-7"></div>
+			<div class="col-lg-5">
+				<div class="right_part space-y-20">
+					<form action="{% url 'user' %}" method="post">
+						<h1 class="color_white"> Welcome to Rave </h1>
+						<p class="color_white" style="color: white !important">Don't have an account yet? <a
+								href="{% url 'register' %}"> Register </a>
+						</p>
+						<br>
+						<div class="box edit_box w-full space-y-20">
+							<p class="color_white" style="color: #f47951;">
+								{% if e %}
+									{{ e }}
+								{% endif %}
+							</p>
+							<div class="space-y-10">
+								<span class="nameInput">Email </span>
+								<div class="confirm">
+									<input type="text" name="email" class="form-control" placeholder="Enter email" />
+								</div>
+							</div>
+							<div class="space-y-10">
+								<span class="nameInput">Password</span> </span>
+								<div class="confirm">
+									<input type="password" name="password" class="form-control"
+										placeholder="Enter your password" />
+								</div>
+							</div>
+							{% csrf_token %}
+							<!-- <a class="btn btn-white btn-sm color_green"> Click to verify </a> -->
+							<button type="submit" class="btn btn-grad w-full btn-lg "> Login</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}

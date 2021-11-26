@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+
+<style>
+    #vid_nft {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+</style>
+<div class="container" style="margin-bottom: 100px;">
+    <a href="{% url 'index' %}" class="btn btn-white btn-sm my-40">
+        Back to home
+    </a>
+    {% if data %}
+    <div class="item_details">
+        <div class="row sm:space-y-20">
+            <div class="col-lg-6">
+
+                {% if 'mp3' in data.file.url %}
+                <div class="text-center col-md-3">
+                    <img style="width: 300px;" src="{% static 'mp3_placeholder.jpg' %}" alt="item
+                    img" />
+                    <br><br>
+                    <audio controls>
+                        <source src="{{ data.file.url }}" type="audio/mpeg">
+                        Your browser does not support the audio tag.
+                    </audio>
+                </div>
+                {% elif 'png' in data.file.url %}
+                <img id="nft_img_size" src="{{data.file.url}}" alt="" />
+                {% elif 'gif' in data.file.url %}
+                <img id="nft_img_size" src="{{data.file.url}}" alt="" />
+                {% elif 'jpg' in data.file.url %}
+                <img id="nft_img_size" src="{{data.file.url}}" alt="" />
+                {% elif 'mp4' in data.file.url %}
+                <video id="vid_nft" controls>
+                    <source src="{{data.file.url}}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                {% else %}
+                <img src="{% static 'placeholder.png' %}" alt="item
+														img" />
+                {% endif %}
+            </div>
+            <div class="col-lg-6">
+                <div class="space-y-20">
+                    <h3>{{ data.title }}</h3>
+                    <div class="box">
+                        <div class="space-y-20">
+                            <div class="d-flex justify-content-between
+                                mb-30_reset">
+                                <ul class="nav nav-tabs d-flex space-x-10 mb-30" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="btn btn-white btn-sm" data-toggle="tab" href="#tabs-2" role="tab">
+                                            <p class="txt_sm">
+                                                Price: <span class="color_green txt_sm"><span id="price">
+                                                        {{data.price}}</span>
+                                                    BNB</span>
+                                            </p>
+
+                                        </a>
+
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="hr"></div>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                                    <p>{{ data.desc }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hr2"></div>
+
+                    <div class="d-flex space-x-20">
+                        {% if user.is_authenticated %}
+                        <script>
+                            var mail = '{{user.email}}'
+                        </script>
+                        <button class="btn btn-primary btn-lg" onclick="buy_now('{{data.id}}');"> Buy
+                            Now</button>
+                        {% else %}
+                        <button class="btn btn-primary btn-lg" onclick="location.replace('/login/')"> Buy
+                            Now</button>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <h3>Data not avialable !!!</h3>
+    {% endif %}
+</div>
+
+
+
+{% endblock %}

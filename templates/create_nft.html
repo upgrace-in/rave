@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+{% if user.is_authenticated %}
+<form enctype="multipart/form-data" action="{% url 'create_nft' %}" method="post">
+	{% csrf_token %}
+	<div class="container" style="margin-top: 100px;">
+		<div class="box in__upload mb-120">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="left__part space-y-40 md:mb-20 upload_file">
+						<div class="space-y-20">
+							<img class="icon" src="{% static 'img/icons/upload.svg' %}" alt="">
+							<h5>Drag and drop your file</h5>
+							<p class="color_text">PNG / JPG / GIF, MP4, MP3. Max
+								100mb.</p>
+						</div>
+						<div class="space-y-20">
+							<p id="uploaded_file" class="color_text">or choose a file</p>
+							<a href="#" class="btn btn-white"> Browse files </a>
+							<input onchange="check_extension(this);" required name="file" id="file" type="file">
+
+						</div>
+						<script>
+							$(document).ready(function () {
+								$('input[type="file"]').change(function (e) {
+									var geekss = e.target.files[0].name;
+									$("#uploaded_file").text(geekss + ' is the selected file.');
+								});
+							});
+
+							function check_extension(e){
+								let extension = $(e).val().split('.')[1];
+								if((extension == 'png') || (extension == 'gif') || (extension == 'jpg') || (extension == 'mp4') || (extension == 'mp3')){
+									console.log(extension);
+								}else{
+									$(e).val(' ')
+									alert("Please upload file with following extensions only : \npng, jpg, gif, mp3 or mp4 !!!")
+								}
+							}
+						</script>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="form-group space-y-10">
+						<div class="space-y-20">
+							<div class="space-y-10">
+								<span class="nameInput">Title</span>
+								<input name="title" required type="text" class="form-control"
+									placeholder="e. g. `Rave`">
+							</div>
+							<div class="space-y-10">
+								<span class="nameInput">Description </span>
+								<input name="desc" required type="text" class="form-control"
+									placeholder="e. g. `Rave NFT - Music Marketplace...`">
+							</div>
+							<div class="space-y-10">
+								<span class="nameInput">Wallet Address</span>
+								<input name="wallet_address" id="wallet_address" required type="text" class="form-control"
+									placeholder="0x0000000000000000000000000000000000000000">
+							</div>
+							<div class="space-y-10">
+								<span class="variationInput">Price (BNB)</span>
+								<input name="price" required type="text" class="form-control"
+									placeholder="e. g. `01.00 BNB`">
+							</div>
+
+
+						</div>
+					</div>
+					<p class="color_black">
+						<span class="color_text text-bold"> Service fee : </span>
+						0%
+					</p>
+					<!-- <p class="color_black">
+						<span class="color_text text-bold"> You will receive :
+						</span>
+						22.425 BNB $41,637.78
+					</p> -->
+					<p>
+
+
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="fixed_row bottom-0 left-0 right-0">
+		<div class="container">
+			<div class="row content justify-content-between mb-20_reset">
+				<div class="col-md-auto col-12 mb-20">
+					<div class="space-x-10">
+						<a href="{% url 'index' %}" class="btn btn-white
+									others_btn"> Cancel</a>
+						<!-- <a href="#" class="btn btn-dark others_btn" data-toggle="modal" data-target="#popup_preview">
+						Preview</a> -->
+
+					</div>
+				</div>
+				<div class="col-md-auto col-12 mb-20">
+					<button type="submit" class="btn btn-grad
+								btn_create"> Create
+						item</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+{% else %}
+<script>
+	$(document).ready(() => {
+		location.replace('/login')
+	})
+</script>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+{% if user.is_superuser %}
+<div style="cursor: pointer; margin-top: 70px;">
+    <div class="card__item four">
+        <div class="card_body space-y-10">
+            <h6 class="card_title">
+                <span class="color_black">
+                </span>
+            </h6>
+            <div class="card_footer d-block space-y-10">
+                <div class="card_footer">
+
+                    <h3 class="">
+                        Total Registered Users:&nbsp;&nbsp; <h2 class="color_green">
+                            {{users_count}}</h2>
+                    </h3>
+
+                </div>
+                <a class="btn bkc btn-sm btn-success" href="/admin/auth/user/">View</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% if nfts %}
+<div class="mt-100">
+    <div class="container">
+        <div class="section__head">
+            <div class="d-md-flex
+                                    sm:space-y-20
+                                    space-x-20
+                                    justify-content-between
+                                    align-items-center">
+                <h2 class="section__title text-center">Approve/Disapprove</h2>
+
+            </div>
+        </div>
+        <div class="row">
+            {% for i in nfts %}
+                {% if i.purchased != True %}
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6" style="cursor: pointer;"
+                    onclick="location.href = '/view_nft/{{i.id}}'">
+                    <div class="card__item four">
+                        <div class="card_body space-y-10">
+                            <div class="card_head">
+                                {% if 'mp3' in i.file.url %}
+                                <img id="nft_img_size" src="{% static 'mp3_placeholder.jpg' %}" alt="" />
+                                {% elif 'png' in i.file.url %}
+                                <img id="nft_img_size" src="{{i.file.url}}" alt="" />
+                                {% elif 'gif' in i.file.url %}
+                                <img id="nft_img_size" src="{{i.file.url}}" alt="" />
+                                {% elif 'jpg' in i.file.url %}
+                                <img id="nft_img_size" src="{{i.file.url}}" alt="" />
+                                {% elif 'mp4' in i.file.url %}
+                                <img id="nft_img_size" src="{% static 'mp4_placeholder.png' %}" alt="item
+                                                            img" />
+                                {% else %}
+                                <img src="{% static 'placeholder.png' %}" alt="item
+                                                            img" />
+                                {% endif %}
+                            </div>
+
+                            <h6 class="card_title">
+                                <span class="color_black">
+                                    {{ i.title }}
+                                </span>
+                            </h6>
+                            <div class="card_footer d-block space-y-10">
+                                <div class="card_footer justify-content-between">
+
+                                    <p class="txt_sm">
+                                        Price: <span class="color_green txt_sm">{{ i.price }}
+                                            BNB</span>
+                                    </p>
+
+                                </div>
+                                <div class="hr"></div>
+                                <div class="d-flex
+                                                                align-items-center
+                                                                space-x-10
+                                                                justify-content-between">
+                                    {% if i.approved == True %}
+                                    <a class="btn btn-sm btn-danger" href="{% url 'nft_status' id=i.id %}">Disapprove</a>
+                                    {% else %}
+                                    <a class="btn bkc btn-sm btn-success" href="{% url 'nft_status' id=i.id %}">Approve</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <br><br>
+        <h2 class="section__title">Already Purchased</h2>
+        <br>
+        <div class="row">
+            {% for i in nfts %}
+                {% if i.purchased == True %}
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6" style="cursor: pointer;"
+                    onclick="location.href = '/view_nft/{{i.id}}'">
+                    <div class="card__item four">
+                        <div class="card_body space-y-10">
+                            <div class="card_head">
+                                {% if 'mp3' in i.file.url %}
+                                <img id="nft_img_size" src="{% static 'mp3_placeholder.jpg' %}" alt="" />
+                                {% elif 'png' in i.file.url %}
+                                <img id="nft_img_size" src="{{i.file.url}}" alt="" />
+                                {% elif 'gif' in i.file.url %}
+                                <img id="nft_img_size" src="{{i.file.url}}" alt="" />
+                                {% elif 'jpg' in i.file.url %}
+                                <img id="nft_img_size" src="{{i.file.url}}" alt="" />
+                                {% elif 'mp4' in i.file.url %}
+                                <img id="nft_img_size" src="{% static 'mp4_placeholder.png' %}" alt="item
+                                                            img" />
+                                {% else %}
+                                <img src="{% static 'placeholder.png' %}" alt="item
+                                                            img" />
+                                {% endif %}
+                            </div>
+
+                            <h6 class="card_title">
+                                <span class="color_black">
+                                    {{ i.title }}
+                                </span>
+                            </h6>
+                            <div class="card_footer d-block space-y-10">
+                                <div class="card_footer justify-content-between">
+
+                                    <p class="txt_sm">
+                                        Price: <span class="color_green txt_sm">{{ i.price }}
+                                            BNB</span>
+                                    </p>
+
+                                </div>
+                                <div class="hr"></div>
+                                <div class="d-flex
+                                                                align-items-center
+                                                                space-x-10
+                                                                justify-content-between">
+                                    {% if i.approved == True %}
+                                    <a class="btn btn-sm btn-danger" href="{% url 'nft_status' id=i.id %}">Disapprove</a>
+                                    {% else %}
+                                    <a class="btn bkc btn-sm btn-success" href="{% url 'nft_status' id=i.id %}">Approve</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endif %}
+<style>
+    .bkc:hover {
+        background: #198754 !important;
+    }
+</style>
+{% else %}
+<script>
+    location.href = '/'
+</script>
+{% endif %}
+
+{% endblock %}
