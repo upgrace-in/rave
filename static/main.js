@@ -38,15 +38,8 @@ async function totalSupply() {
 
 async function connectWeb3() {
     if (window.ethereum) {
+        console.log("hari");
         conn = await window.ethereum.enable();
-
-        ethconnected = conn.length > 0;
-        if (ethconnected) {
-            ethaddress = conn[0];
-            $('#connectbtn').each((e) => {
-                $(e).html("Hari BOl")
-            })
-        }
         return true;
     }
 }
@@ -62,7 +55,7 @@ function create_transaction(id, to, from, value) {
             $.ajax({
                 url: "/update_txhash/" + id + "/",
                 method: 'POST',
-                data: { 'txhash': res, 'buyer_id':mail },
+                data: { 'txhash': res, 'buyer_id': mail },
                 success: function (data) {
                     alert("Please wait for the transaction to get approved, it may take 2 to 5 minutes after approval also.")
                 },
@@ -101,13 +94,7 @@ function buy_now(id) {
     }
 }
 
-$(document).ready(function () {
-    web3 = new Web3(
-        new Web3.providers.HttpProvider("https://bsc-dataseed1.binance.org:443")
-    );
-
-    window.web3 = new Web3(window.ethereum);
-
+function check_for_acc() {
     web3.eth.getAccounts().then(function (acc) {
         if (acc[0]) {
             $('.connectbtn').html("Wallet Connected")
@@ -115,7 +102,20 @@ $(document).ready(function () {
             ethaddress = acc[0];
         }
     });
+}
+
+$(document).ready(function () {
+    web3 = new Web3(
+        new Web3.providers.HttpProvider("https://bsc-dataseed1.binance.org:443")
+    );
+
+    window.web3 = new Web3(window.ethereum);
+    check_for_acc();
 });
+
+setInterval(() => {
+    check_for_acc()
+}, 2000)
 
 Number.prototype.toFixedSpecial = function (n) {
     var str = this.toFixed(n);
