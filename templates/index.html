@@ -8,17 +8,15 @@
 			<div class="row align-items-center">
 				<div class="col-lg-6">
 					<div class="hero__left space-y-20">
-						<h1 class="hero__title" style="color: #fdbf47 !important;">
-							Discover - Mint - Showcase premium NFTs
+						<h1 class="hero__title" style="color: #000 !important;">
+							An Exclusive NFT Marketplace for Electronic Artists
 						</h1>
 						<p class="hero__text txt">Interested in being featured on RAVE?<Br> Reach out to us.
 						</p>
 						<div class="space-x-20 d-flex flex-column flex-md-row
 										sm:space-y-20">
-							<a class="btn btn-primary btnw" href="{% url 'marketplace' %}">View
-								market</a>
-							<a class="btn btn-white btnf" href="{% url 'create_nft' %}">
-								Upload your item</a>
+							<a class="btn btn-primary btnw" target="_blank" href="#">Telegram</a>
+							<a class="btn btn-white btnf" target="_blank" href="#">Launch Dapp</a>
 						</div>
 					</div>
 				</div>
@@ -26,7 +24,12 @@
 					<img class="img-fluid w-full" id="img_js" src="{% static 'biglogo.png' %}" alt="">
 				</div>
 			</div>
-
+			<style>
+				.btnf:hover{
+					background: #e62b84 !important;
+					color: #fff !important;
+				}
+			</style>
 		</div>
 	</div>
 
