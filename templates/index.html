@@ -15,17 +15,19 @@
 						</p>
 						<div class="space-x-20 d-flex flex-column flex-md-row
 										sm:space-y-20">
-							<a class="btn btn-primary btnw" target="_blank" href="#">Telegram</a>
-							<a class="btn btn-white btnf" target="_blank" href="#">Launch Dapp</a>
+							<a class="btn btn-primary btnw" href="{% url 'marketplace' %}">View
+								market</a>
+							<a class="btn btn-white btnf" href="{% url 'create_nft' %}">
+								Upload your item</a>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-6">
-					<img class="img-fluid w-full" id="img_js" src="{% static 'biglogo.png' %}" alt="">
+					<img class="img-fluid w-full" style="width: 90% !important;" id="img_js" src="{% static 'biglogo.png' %}" alt="">
 				</div>
 			</div>
 			<style>
-				.btnf:hover{
+				.btnf:hover {
 					background: #e62b84 !important;
 					color: #fff !important;
 				}

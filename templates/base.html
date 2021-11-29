@@ -27,6 +27,9 @@
 
 
     <style>
+        body{
+            background: #f0f0f1 !important;
+        }
         #logo_js_f {
             width: 150px !important;
         }
@@ -48,14 +51,16 @@
             height: 300px !important;
         }
 
-        .btnf{
-            background: #e62b84 !important;
+        .btnf {
+            background: #F6935B !important;
             color: white !important;
         }
-        .btnw{
-            background: #ffb62c !important;
+
+        .btnw {
+            background: #EF6175 !important;
         }
-        .btns{
+
+        .btns {
             background: #6f7d95 !important;
         }
     </style>
@@ -114,10 +119,12 @@
                         </button>
                     </div> -->
                     <div class="header__btns">
-                        <a href="#" target="_blank" class="connectbtn btn btn-grad btn-sm" style="cursor: pointer;">Launch Dapp</a>
-                        <!-- <a onclick="connectWeb3();">
-                            <img width="45" src="{% static 'img/icons/metamask.svg' %}" alt="">
-                        </a> -->
+                        <a onclick="connectWeb3();" class="connectbtn btn btn-grad btn-sm" style="padding: 10px !important; cursor: pointer; background: #EF6175 !important;">
+                            <i class="ri-wallet-3-line"></i>
+                            Connect wallet</a>
+                        <a onclick="connectWeb3();">
+                            <img width="40" src="{% static 'img/icons/metamask.svg' %}" alt="">
+                        </a>
                     </div>
                     <div class="header__burger js-header-burger"></div>
 
@@ -190,11 +197,11 @@
                     <div class="col-lg-2 col-6">
                         <h6 class="footer__title">Rave</h6>
                         <ul class="footer__list">
-                            <li> <a href="Home1.html"> Login </a>
+                            <li> <a href="{% url 'login' %}"> Login </a>
                             </li>
-                            <li> <a href="Home2.html"> Register
+                            <li> <a href="{% url 'register' %}"> Register
                                 </a> </li>
-                            
+
                         </ul>
                     </div>
                     <!-- <div class="col-lg-2 col-6">
