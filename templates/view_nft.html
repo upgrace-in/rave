@@ -81,10 +81,12 @@
                         <script>
                             var mail = '{{user.email}}'
                         </script>
-                        <button class="btn btn-primary btn-lg" onclick="buy_now('{{data.id}}');"> Buy
+                        <!-- <button class="btn btn-primary btn-lg" disabled onclick="buy_now('{{data.id}}');"> Buy
+                            Now</button> -->
+                        <button class="btn btn-primary btn-lg" disabled> Buy
                             Now</button>
                         {% else %}
-                        <button class="btn btn-primary btn-lg" onclick="location.replace('/login/')"> Buy
+                        <button class="btn btn-primary btn-lg" disabled onclick="location.replace('/login/')"> Buy
                             Now</button>
                         {% endif %}
 

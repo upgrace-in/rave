@@ -15,11 +15,25 @@
 						</p>
 						<div class="space-x-20 d-flex flex-column flex-md-row
 										sm:space-y-20">
-							<a class="btn btn-primary btnw" href="{% url 'marketplace' %}">View
+							<a class="btn btn-primary btnw b-cebter" href="{% url 'marketplace' %}">View
 								market</a>
-							<a class="btn btn-white btnf" href="{% url 'create_nft' %}">
+							<a class="btn btn-white btnf b-cebter" href="{% url 'create_nft' %}">
 								Upload your item</a>
 						</div>
+						<style>
+							@media (max-width: 780px) {
+								.b-cebter{
+									margin-left: auto;
+									margin-right: auto;
+									text-align: center;
+									justify-content: center;
+									width: 100%;
+								}
+								.btnf{
+									margin-left: 0 !important;
+								}
+							}
+						</style>
 					</div>
 				</div>
 				<div class="col-lg-6">
